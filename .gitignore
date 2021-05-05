@@ -1,5 +1,16 @@
+# IDEA files
+**/.idea/
+.idea
+
+# Mvn files
+**/.mvn
+.mvn
+
 # Compiled class file
 *.class
+
+# Target foled
+**/target/
 
 # Log file
 *.log
