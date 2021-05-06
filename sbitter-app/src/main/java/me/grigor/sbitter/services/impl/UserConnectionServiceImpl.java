@@ -32,12 +32,12 @@ public class UserConnectionServiceImpl implements UserConnectionService {
     public List<User> getUserFollowers(Long userId) {
         List<UserConnection> userConnections =
                 userConnectionRepository.findAllByUserIdOrderByCreated(userId);
-        log.info("[UserConnectionServiceImpl, method: getUserFollowers] " +
+        log.info("[UserConnectionServiceImpl.getUserFollowers] " +
                         "Found {} followers users of user with id: {}",
                 userConnections.size(), userId);
 
         List<User> followers = prepareUsers(userConnections, UserConnection::getFollowerId);
-        log.info("[UserConnectionServiceImpl, method: getUserFollowers] " +
+        log.info("[UserConnectionServiceImpl.getUserFollowers] " +
                         "Found {} existing followers of user with id: {}",
                 followers.size(), userId);
         return followers;
@@ -47,12 +47,12 @@ public class UserConnectionServiceImpl implements UserConnectionService {
     public List<User> getUserFollowing(Long userId) {
         List<UserConnection> userConnections =
                 userConnectionRepository.findAllByFollowerIdOrderByCreated(userId);
-        log.info("[UserConnectionServiceImpl, method: getUserFollowing] " +
+        log.info("[UserConnectionServiceImpl.getUserFollowing] " +
                         "Found {} following users of user with id: {}",
                 userConnections.size(), userId);
 
         List<User> following = prepareUsers(userConnections, UserConnection::getUserId);
-        log.info("[UserConnectionServiceImpl, method: getUserFollowers] " +
+        log.info("[UserConnectionServiceImpl.getUserFollowers] " +
                         "Found {} existing following users of user with id: {}",
                 following.size(), userId);
         return following;
@@ -65,7 +65,7 @@ public class UserConnectionServiceImpl implements UserConnectionService {
             Long userId = getUserId.apply(userConnection);
             User user = userRepository.findById(userId).orElse(null);
             if (user == null) {
-                log.warn("[UserConnectionServiceImpl, method: prepareUsers] " +
+                log.warn("[UserConnectionServiceImpl.prepareUsers] " +
                         "User with id {}, not found", userId);
                 continue;
             }
@@ -77,7 +77,7 @@ public class UserConnectionServiceImpl implements UserConnectionService {
     @Override
     public UserConnection addConnection(UserConnection userConnection) {
         UserConnection newUserConnection = userConnectionRepository.save(userConnection);
-        log.info("[UserConnectionServiceImpl, method: prepareUsers] " +
+        log.info("[UserConnectionServiceImpl.prepareUsers] " +
                 "Connection {} successfully created", newUserConnection);
         return newUserConnection;
     }

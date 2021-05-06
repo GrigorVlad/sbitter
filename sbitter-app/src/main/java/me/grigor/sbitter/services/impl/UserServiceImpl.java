@@ -19,42 +19,42 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-//    private final BCryptPasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
-                           RoleRepository roleRepository) {
-//                           BCryptPasswordEncoder passwordEncoder) {
+                           RoleRepository roleRepository,
+                           BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
-//        this.passwordEncoder = passwordEncoder;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public User register(User user) {
         Role role = roleRepository.findByName("ROLE_USER");
 
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(List.of(role));
         user.setStatus(Status.ACTIVE);
 
         User registeredUser = userRepository.save(user);
 
-        log.info("[UserServiceImpl, method: register] User: {} successfully created", registeredUser);
+        log.info("[UserServiceImpl.register] User: {} successfully created", registeredUser);
         return registeredUser;
     }
 
     @Override
     public List<User> getAll() {
         List<User> result = userRepository.findAll();
-        log.info("[UserServiceImpl, method: getAll] {} users found", result.size());
+        log.info("[UserServiceImpl.getAll] {} users found", result.size());
         return result;
     }
 
     @Override
     public User findByUsername(String username) {
         User result = userRepository.findByUsername(username);
-        log.info("[UserServiceImpl, method: findByUsername] User: {} found by username: {}", result, username);
+        log.info("[UserServiceImpl.findByUsername] User: {} found by username: {}", result, username);
         return result;
     }
 
@@ -62,16 +62,16 @@ public class UserServiceImpl implements UserService {
     public User findById(Long userId) {
         User result = userRepository.findById(userId).orElse(null);
         if (result == null) {
-            log.warn("[UserServiceImpl, method: findById] No user was found by id: {}", userId);
+            log.warn("[UserServiceImpl.findById] No user was found by id: {}", userId);
             return null;
         }
-        log.info("[UserServiceImpl, method: findById] User: {} found by id: {}", result, userId);
+        log.info("[UserServiceImpl.findById] User: {} found by id: {}", result, userId);
         return result;
     }
 
     @Override
     public void deleteById(Long userId) {
         userRepository.deleteById(userId);
-        log.info("[UserServiceImpl, method: deleteById] User with id: {} was successfully deleted", userId);
+        log.info("[UserServiceImpl.deleteById] User with id: {} was successfully deleted", userId);
     }
 }
