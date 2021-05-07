@@ -19,6 +19,9 @@
 **/*.iml
 *.iml
 
+# node_madules
+**/node_modules
+
 # BlueJ files
 *.ctxt
 
