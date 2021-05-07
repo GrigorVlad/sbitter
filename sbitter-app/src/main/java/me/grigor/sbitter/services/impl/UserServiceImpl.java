@@ -6,8 +6,11 @@ import me.grigor.sbitter.entity.Status;
 import me.grigor.sbitter.entity.User;
 import me.grigor.sbitter.repository.RoleRepository;
 import me.grigor.sbitter.repository.UserRepository;
+import me.grigor.sbitter.response.ResultMessages;
+import me.grigor.sbitter.response.ServiceResponse;
 import me.grigor.sbitter.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,22 +19,39 @@ import java.util.List;
 @Service
 @Slf4j
 public class UserServiceImpl implements UserService {
+    private static final String USERNAME_KEY = "username";
+    private static final String EMAIL_KEY = "email";
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final Environment environment;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
                            RoleRepository roleRepository,
-                           BCryptPasswordEncoder passwordEncoder) {
+                           BCryptPasswordEncoder passwordEncoder,
+                           Environment environment) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.environment = environment;
     }
 
     @Override
-    public User register(User user) {
+    public ServiceResponse<User> register(User user) {
+        ResultMessages resultMessages = new ResultMessages();
+        if(userRepository.existsByUsername(user.getUsername())) {
+            resultMessages.addError(USERNAME_KEY, environment.getProperty("error.exists.username"));
+        }
+        if (userRepository.existsByEmail(user.getEmail())) {
+            resultMessages.addInfos(EMAIL_KEY, environment.getProperty("error.exists.email"));
+        }
+
+        if (resultMessages.errorsExists()) {
+            return new ServiceResponse<>(resultMessages);
+        }
+
         Role role = roleRepository.findByName("ROLE_USER");
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -41,7 +61,7 @@ public class UserServiceImpl implements UserService {
         User registeredUser = userRepository.save(user);
 
         log.info("[UserServiceImpl.register] User: {} successfully created", registeredUser);
-        return registeredUser;
+        return new ServiceResponse<>(registeredUser, resultMessages);
     }
 
     @Override
