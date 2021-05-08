@@ -1,0 +1,13 @@
+div.page-entity {
+    display: flex;
+    justify-content: flex-start;
+}
+
+div.right-nav-column {
+    width: 20%;
+}
+
+div.left-entry-column {
+    width: 80%;
+    height: 100%;
+}

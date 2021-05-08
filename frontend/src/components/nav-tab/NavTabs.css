@@ -1,0 +1,25 @@
+div.nav-entity {
+    width: 100%;
+}
+
+.nav-button {
+    width: 100%;
+    background-color: lightgreen;
+    border: none;
+    border-radius: 0;
+    color: black;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.nav-button:hover {
+    background-color: green;
+}
+
+span {
+    padding: 3px;
+}
+
+a {
+    text-decoration: none;
+}

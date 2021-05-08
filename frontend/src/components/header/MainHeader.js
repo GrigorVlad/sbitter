@@ -8,11 +8,6 @@ import "./MainHeader.css"
 function MainHeader() {
     const {userAuth, onUserAuthChange} = React.useContext(UserContext);
 
-    const imgMainHeaderClick = () => {
-        const link = (userAuth == null) ? "/login" : ("/main-page/" + userAuth.id);
-        window.location.assign("/login");
-    }
-
     return (
         <div className="main-header">
             <div className="sber-logo">
