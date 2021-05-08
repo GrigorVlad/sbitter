@@ -1,14 +1,31 @@
 import React from "react"
-import sberLogo from "./sber.jpg"
+import {BrowserRouter} from "react-router-dom";
+import SbitterRouter from "./components/router/SbitterRouter";
+import MainHeader from "./components/header/MainHeader";
+import "./MainPage.css"
+
+export const UserContext = React.createContext({
+    userAuth: null,
+    onUserAuthChange: () => {},
+});
 
 function MainPage() {
-  return (
-      <>
-        <h1> Sbitter frontend application</h1>
-        <img src={sberLogo} className="sber-logo" alt="sber-logo"/>
-      </>
+    const [userAuth, setUserAuth] = React.useState(null);
 
-  );
+    console.log("RENDER MainPage. UserAuth:", userAuth);
+    return (
+        <div className="main-page">
+            <UserContext.Provider value={{
+                userAuth: userAuth,
+                onUserAuthChange: (newUserAuth) => {setUserAuth(newUserAuth)}
+            }}>
+                <BrowserRouter>
+                    <MainHeader/>
+                    <SbitterRouter/>
+                </BrowserRouter>
+            </UserContext.Provider>
+        </div>
+    );
 }
 
 export default MainPage;

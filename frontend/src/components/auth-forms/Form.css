@@ -1,0 +1,20 @@
+h1 {
+    font-size: 28px;
+    color: #6c757d;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.form-label {
+    margin-top: 10px;
+    margin-bottom: 0;
+    color: #198754;
+}
+
+.form-control {
+    margin-bottom: 0;
+}
+
+.invalid-feedback {
+    margin-top: 0;
+}

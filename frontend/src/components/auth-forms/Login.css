@@ -1,0 +1,21 @@
+div.log-in-form {
+    padding: 20px;
+}
+
+div.sing-buttons-group {
+    display: flex;
+    justify-content: flex-end;
+}
+
+div.sing-buttons-group button {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+div.sing-buttons-group #sign-up-btn-id {
+    margin-right: 5px;
+}
+
+div.sing-buttons-group #sign-in-btn-id {
+    margin-left: 5px;
+}

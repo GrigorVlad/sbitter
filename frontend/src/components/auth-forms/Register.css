@@ -1,0 +1,17 @@
+div.register-form {
+    padding: 20px;
+}
+
+div.register-buttons-group {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+div.register-buttons-group #back-to-log-in-btn-id {
+    margin-right: 5px;
+}
+
+div.register-buttons-group #register-btn-id {
+    margin-left: 5px;
+}

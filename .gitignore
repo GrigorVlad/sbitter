@@ -22,6 +22,9 @@
 # node_madules
 **/node_modules
 
+# package-lock file
+**/package-lock.jsonnp
+
 # BlueJ files
 *.ctxt
 

@@ -1,0 +1,17 @@
+div.main-header {
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+div.sber-logo {
+    margin: 10px;
+}
+
+div.log-out {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

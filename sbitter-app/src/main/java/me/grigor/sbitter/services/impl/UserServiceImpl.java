@@ -14,6 +14,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -56,6 +57,8 @@ public class UserServiceImpl implements UserService {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(List.of(role));
+        user.setCreated(new Date());
+        user.setUpdated(new Date());
         user.setStatus(Status.ACTIVE);
 
         User registeredUser = userRepository.save(user);
