@@ -1,7 +1,7 @@
 import React from "react";
-import NavVerticalTab from "../nav-tab/NavVerticalTab";
+import NavVerticalTab from "../../nav-tab/NavVerticalTab";
 
-function FollowingsPage() {
+function FollowersPage() {
 
 
     return (
@@ -11,10 +11,12 @@ function FollowingsPage() {
             </div>
 
             <div className="left-entry-column">
-                <p>Here will be FollowingsPage</p>
+                <div className="entity-page-entity">
+                    <p>Here will be FollowersPage</p>
+                </div>
             </div>
         </div>
     )
 }
 
-export default FollowingsPage
+export default FollowersPage

@@ -1,5 +1,5 @@
 import React from "react";
-import NavVerticalTab from "../nav-tab/NavVerticalTab";
+import NavVerticalTab from "../../nav-tab/NavVerticalTab";
 
 function PostsPage() {
 
@@ -11,7 +11,9 @@ function PostsPage() {
             </div>
 
             <div className="left-entry-column">
-                <p>Here will be PostsPage</p>
+                <div className="entity-page-entity">
+                    <p>Here will be PostsPage</p>
+                </div>
             </div>
         </div>
     )
