@@ -4,6 +4,7 @@ import sberLogo from "../../sber.jpg"
 import {Link} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import "./MainHeader.css"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 function MainHeader() {
     const {userAuth, onUserAuthChange} = React.useContext(UserContext);
@@ -26,9 +27,13 @@ function MainHeader() {
                         <Button
                             id="log-out-btn-id"
                             variant="secondary"
+                            className="log-out-btn"
                             size="sm"
                             onClick={() => onUserAuthChange(null)}
                         >
+                            <span>
+                                <FontAwesomeIcon icon={"sign-out-alt"}/>
+                            </span>
                             Log out
                         </Button>
                      </Link>

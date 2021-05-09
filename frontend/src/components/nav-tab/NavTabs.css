@@ -2,18 +2,27 @@ div.nav-entity {
     width: 100%;
 }
 
+div.nav-vertical-tab {
+    background-color: white;
+    border-radius: 5px;
+}
+
 .nav-button {
     width: 100%;
-    background-color: lightgreen;
+    background-color: white;
     border: none;
-    border-radius: 0;
-    color: black;
+    border-radius: 5px;
+    color: #6c757d;
     display: flex;
     justify-content: flex-start;
 }
 
 .nav-button:hover {
-    background-color: green;
+    background-color: lightgreen;
+}
+.nav-button:focus {
+    background-color: lightgreen;
+    border: none;
 }
 
 span {

@@ -3,6 +3,7 @@ div.main-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    border-radius: 5px;
 }
 
 div.sber-logo {
@@ -14,4 +15,17 @@ div.log-out {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+button.log-out-btn {
+    background-color: white;
+    border: none;
+    border-radius: 0;
+    color: #6c757d;
+    text-decoration: underline;
+}
+
+button.log-out-btn:hover{
+    background-color: white;
+    color: #6c757d;
 }

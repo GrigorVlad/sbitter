@@ -1,13 +1,27 @@
 div.page-entity {
     display: flex;
     justify-content: flex-start;
+    color: #6c757d;
+    height: 100%;
+    background-color: #f7f7f7;
 }
 
 div.right-nav-column {
     width: 20%;
+    height: 100%;
+    padding: 5px 10px 0 0;
 }
 
 div.left-entry-column {
     width: 80%;
     height: 100%;
+    padding: 5px 0 0 5px;
+    border-radius: 5px;
+}
+
+div.entity-page-entity {
+    height: 100%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px;
 }

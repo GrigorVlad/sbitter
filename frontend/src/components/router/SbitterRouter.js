@@ -3,7 +3,7 @@ import {UserContext} from "../../MainPage";
 import {BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 import Login from "../auth-forms/Login";
 import Register from "../auth-forms/Register";
-import UserInfoPage from "../user-pages/UserInfoPage";
+import UserInfoPage from "../user-pages/info-page/UserInfoPage";
 import FollowersPage from "../user-pages/FollowersPage";
 import FollowingsPage from "../user-pages/FollowingsPage";
 import PostsPage from "../user-pages/PostsPage";
@@ -26,11 +26,15 @@ function SbitterRouter() {
                 (userAuth != null) &&
                 <>
                     <Switch>
-                        <Route path="/info" component={UserInfoPage}/>
+                        <Route path="/info/:id" component={(props) => (
+                            <UserInfoPage
+                                {...props}
+                            />
+                        )}/>
                         <Route path="/followers" component={FollowersPage}/>
                         <Route path="/followings" component={FollowingsPage}/>
                         <Route path="/posts" component={PostsPage}/>
-                        <Redirect to="/info"/>
+                        <Redirect to={"/info/" + userAuth.id}/>
                     </Switch>
                 </>
             }

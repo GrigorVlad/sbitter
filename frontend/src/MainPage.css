@@ -1,7 +1,6 @@
 div.main-page {
     margin: auto;
     width: 50%;
-    height: 100vh;
-    background-color: white;
-    padding: 20px;
+    height: calc(100% - 70px);/*Minus header*/
+    padding: 0 20px 0 20px;
 }

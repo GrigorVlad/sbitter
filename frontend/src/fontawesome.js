@@ -3,7 +3,8 @@ import {
     faHome,
     faUsers,
     faUserFriends,
-    faNewspaper
+    faNewspaper,
+    faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -11,4 +12,5 @@ library.add(
     faUsers,
     faUserFriends,
     faNewspaper,
+    faSignOutAlt,
 );

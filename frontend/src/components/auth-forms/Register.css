@@ -1,5 +1,9 @@
 div.register-form {
+    height: calc(100% - 5px);/*Minus margin*/
+    margin-top: 5px;
     padding: 20px;
+    background-color: white;
+    border-radius: 5px;
 }
 
 div.register-buttons-group {

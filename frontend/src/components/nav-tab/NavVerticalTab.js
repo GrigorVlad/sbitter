@@ -2,12 +2,10 @@ import React from "react"
 import NavEntity from "./NavEntity";
 
 function NavVerticalTab() {
-
-
     return (
         <div className="nav-vertical-tab">
             <NavEntity
-                navLink={"/home"}
+                navLink={"/info"}
                 navIcon={"home"}
                 navText={"My Page"}
             />
