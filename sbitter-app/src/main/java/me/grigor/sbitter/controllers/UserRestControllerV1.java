@@ -16,15 +16,15 @@ import java.util.stream.Collectors;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping(value = "/api/users", produces = MediaType.APPLICATION_JSON_VALUE)
-public class UserRestController {
+@RequestMapping(value = "/api/v1/users", produces = MediaType.APPLICATION_JSON_VALUE)
+public class UserRestControllerV1 {
 
     private final UserService userService;
     private final UserConnectionService userConnectionService;
 
     @Autowired
-    public UserRestController(UserService userService,
-                              UserConnectionService userConnectionService) {
+    public UserRestControllerV1(UserService userService,
+                                UserConnectionService userConnectionService) {
         this.userService = userService;
         this.userConnectionService = userConnectionService;
     }

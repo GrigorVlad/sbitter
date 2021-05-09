@@ -1,14 +1,14 @@
 export default class URLHelper {
 
-    static getServerURL() {
-        return "http://localhost:8080/api/";
+    static getServerURLV1() {
+        return "http://localhost:8080/api/v1/";
     }
 
     static getAuthURL() {
-        return this.getServerURL() + "auth";
+        return this.getServerURLV1() + "auth";
     }
 
     static getUsersUrl() {
-        return this.getServerURL() + "users";
+        return this.getServerURLV1() + "users";
     }
 }

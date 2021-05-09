@@ -19,18 +19,18 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping(value = "/api/auth", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/v1/auth", produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
-public class AuthenticationRestController {
+public class AuthenticationRestControllerV1 {
 
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
     private final UserService userService;
 
     @Autowired
-    public AuthenticationRestController(AuthenticationManager authenticationManager,
-                                        JwtTokenProvider jwtTokenProvider,
-                                        UserService userService) {
+    public AuthenticationRestControllerV1(AuthenticationManager authenticationManager,
+                                          JwtTokenProvider jwtTokenProvider,
+                                          UserService userService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenProvider = jwtTokenProvider;
         this.userService = userService;
