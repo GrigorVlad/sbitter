@@ -1,3 +1,56 @@
-div.user-info-page-entity {
+form.user-info-form {
+    padding: 0 10px 10px 0;
+}
 
+form.user-info-form .form-row {
+    display: flex;
+    justify-content: center;
+}
+
+form.user-info-form .form-label {
+    /*color: #6c757d;*/
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+}
+
+form.user-info-form .form-control {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+form.user-info-form .form-control:disabled {
+    background-color: white;
+    border: none;
+}
+
+div.user-info-content {
+    background-color: white;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+div.info-buttons {
+    height: 30px;
+    display: flex;
+    justify-content: flex-end;
+    border-bottom: 1px solid #ced4da;
+    /*padding: 2px;*/
+}
+
+button.user-info-btn {
+    background-color: white;
+    border: none;
+    border-radius: 0;
+    color: #6c757d;
+    text-decoration: underline;
+}
+
+button.user-info-btn:hover{
+    background-color: white;
+    color: #6c757d;
+}
+
+button.edit-btn:disabled {
+    background-color: lightgray;
 }
