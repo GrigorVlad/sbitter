@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import PostWriter from "./PostWriter";
 
 import "./PostPage.css"
-import {userInfoService} from "../../../services/userService";
+import {userService} from "../../../services/userService";
 import {UserContext} from "../../../MainPage";
 import PostEntry from "./PostEntry";
 
@@ -13,11 +13,11 @@ function PostsContent({postsType, userId, disableWrite}) {
 
     React.useEffect(() => {
         if (postsType === "own") {
-            userInfoService.getUserPosts(userId, userAuth.token,
+            userService.getUserPosts(userId, userAuth.token,
                 (res) => setPosts(res.data),
                 (err) => console.error(err));
         } else if (postsType === "followings") {
-            userInfoService.getUserFollowingsPosts(userId, userAuth.token,
+            userService.getUserFollowingsPosts(userId, userAuth.token,
                 (res) => setPosts(res.data),
                 (err) => console.error(err));
         }
@@ -28,7 +28,7 @@ function PostsContent({postsType, userId, disableWrite}) {
             text: postText,
         }
         console.debug("Publishing post:", postText);
-        userInfoService.publishUserPost(userAuth.id, userAuth.token, post,
+        userService.publishUserPost(userAuth.id, userAuth.token, post,
             (res) => {
                 console.log("Result of post publish:", res);
                 let newPosts = [res.data].concat(posts);

@@ -1,7 +1,22 @@
 import React from "react";
 import NavVerticalTab from "../../nav-tab/NavVerticalTab";
+import "./PeoplePage.css"
+import {UserContext} from "../../../MainPage";
+import {userService} from "../../../services/userService";
+import PersonEntry from "./PersonEntry";
 
 function PeoplePage() {
+    const {userAuth, onUserAuthChange} = React.useContext(UserContext);
+    const[people, setPeople] = React.useState([]);
+
+    React.useEffect(() => {
+        userService.getAllUsers(userAuth.id, userAuth.token,
+            (res) => {
+                console.debug("All users request result", res);
+                setPeople(res.data)
+            },
+            (err) => console.error(err));
+    }, []);
 
 
     return (
@@ -12,7 +27,16 @@ function PeoplePage() {
 
             <div className="left-entry-column">
                 <div className="entity-page-entity">
-                    <p>Here will be PeoplePage</p>
+                    <div className="people-entity">
+                        {
+                            people.map(person => (
+                                <PersonEntry
+                                    key={person.id}
+                                    person={person}
+                                />
+                            ))
+                        }
+                    </div>
                 </div>
             </div>
         </div>

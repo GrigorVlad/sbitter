@@ -3,7 +3,7 @@ import {UserContext} from "../../../MainPage";
 import NavVerticalTab from "../../nav-tab/NavVerticalTab";
 import "../CommonStyles.css"
 import "./UserInfoPage.css"
-import {userInfoService} from "../../../services/userService";
+import {userService} from "../../../services/userService";
 import UserInfoForm from "./UserInfoForm";
 import {Button} from "react-bootstrap";
 import PostsContent from "../post/PostsContent";
@@ -16,7 +16,7 @@ function UserInfoPage(props) {
     const [userOnPage, setUserOnPage] = React.useState(null);
 
     React.useEffect(() => {
-        userInfoService.getUserInfo(userAuth.id, userPageId, userAuth.token,
+        userService.getUserInfo(userAuth.id, userPageId, userAuth.token,
             (res) => {
                 console.debug("User request res:", res);
                 setUserOnPage(res.data);

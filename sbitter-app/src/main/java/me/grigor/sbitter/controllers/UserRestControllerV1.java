@@ -29,9 +29,9 @@ public class UserRestControllerV1 {
         this.userConnectionService = userConnectionService;
     }
 
-    @RequestMapping(value = "/{userId}/info/{personId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{personId}/info", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<UserDto> getUserById(@PathVariable Long userId, @PathVariable Long personId) {
+    public ResponseEntity<UserDto> getUserById(@RequestParam Long userId, @PathVariable Long personId) {
         User person = userService.findById(personId);
         if (person == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -45,5 +45,20 @@ public class UserRestControllerV1 {
         userDto.setFollower(userConnectionService.checkFollower(userId, personId));
         userDto.setFollowing(userConnectionService.checkFollowing(userId, personId));
         return new ResponseEntity<>(userDto, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public List<UserDto> getAllUsers(@RequestParam Long userId) {
+        return userService.getAll().stream()
+                .map(UserConverter.TO_USER_DTO)
+                .peek(userDto -> {
+                    Long personId = userDto.getId();
+                    if (!userId.equals(personId)) {
+                        userDto.setFollower(userConnectionService.checkFollower(userId, personId));
+                        userDto.setFollowing(userConnectionService.checkFollowing(userId, personId));
+                    }
+                })
+                .collect(Collectors.toList());
     }
 }
