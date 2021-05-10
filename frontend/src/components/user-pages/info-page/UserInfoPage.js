@@ -34,7 +34,7 @@ function UserInfoPage(props) {
 
             <div className="left-entry-column">
                 <div className="entity-page-entity">
-                    <div className="user-info-page-entity">
+                    <>
                         <div className="user-info-content">
                             <div className="info-buttons">
                                 {
@@ -72,7 +72,7 @@ function UserInfoPage(props) {
                             userId={userPageId}
                             disableWrite={userPageId !== userAuth.id}
                         />
-                    </div>
+                    </>
                 </div>
             </div>
         </div>

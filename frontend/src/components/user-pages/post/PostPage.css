@@ -1,5 +1,5 @@
 div.post-content {
-    height: calc(100% - 214px); /**/
+    height: calc(100% - 182px - 131px); /*all page - userInfo & post writter + margins*/
     border-radius: 5px;
 }
 
@@ -7,6 +7,11 @@ div.post-writer-form {
     background-color: white;
     padding: 10px;
     margin-bottom: 10px;
+}
+
+div.all-posts {
+    height: 100%;
+    overflow-y: auto;
 }
 
 div.publish-buttons {

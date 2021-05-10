@@ -43,6 +43,7 @@ function PostsContent({postsType, userId, disableWrite}) {
                 !disableWrite &&
                 <div className="post-writer-panel">
                     <PostWriter
+                        postCount={posts.length}
                         onPublishPost={(postText) => onPostPublish(postText)}
                     />
                 </div>
