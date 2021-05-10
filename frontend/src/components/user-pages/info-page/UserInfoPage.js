@@ -6,17 +6,17 @@ import "./UserInfoPage.css"
 import {userInfoService} from "../../../services/userService";
 import UserInfoForm from "./UserInfoForm";
 import {Button} from "react-bootstrap";
-import PostContent from "../post/PostContent";
+import PostsContent from "../post/PostsContent";
 
 function UserInfoPage(props) {
-    const {userAuth} = React.useContext(UserContext);
+    const {userAuth, onUserAuthChange} = React.useContext(UserContext);
     const userPageId = parseInt(props.match.params.id);
     console.debug("RENDER UserInfoPage. UserAuth:", userAuth, "UserPageId:", userPageId);
 
     const [userOnPage, setUserOnPage] = React.useState(null);
 
     React.useEffect(() => {
-        userInfoService.askUserInfo(userAuth.id, userPageId, userAuth.token,
+        userInfoService.getUserInfo(userAuth.id, userPageId, userAuth.token,
             (res) => {
                 console.debug("User request res:", res);
                 setUserOnPage(res.data);
@@ -67,8 +67,9 @@ function UserInfoPage(props) {
                             />
                         </div>
 
-                        <PostContent
-                            userIds={[userPageId]}
+                        <PostsContent
+                            postsType="own"
+                            userId={userPageId}
                             disableWrite={userPageId !== userAuth.id}
                         />
                     </div>

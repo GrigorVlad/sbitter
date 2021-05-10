@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface UserConnectionService {
 
-    List<User> getUserFollowers(Long userId);
+    List<Long> getUserFollowers(Long userId);
 
-    List<User> getUserFollowing(Long userId);
+    List<Long> getUserFollowing(Long userId);
 
     UserConnection addConnection(UserConnection userConnection);
 

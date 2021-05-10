@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -29,49 +30,28 @@ public class UserConnectionServiceImpl implements UserConnectionService {
     }
 
     @Override
-    public List<User> getUserFollowers(Long userId) {
+    public List<Long> getUserFollowers(Long userId) {
         List<UserConnection> userConnections =
-                userConnectionRepository.findAllByUserIdOrderByCreated(userId);
+                userConnectionRepository.findAllByUserIdOrderByCreatedDesc(userId);
         log.info("[UserConnectionServiceImpl.getUserFollowers] " +
-                        "Found {} followers users of user with id: {}",
+                        "Found {} followers of user with id: {}",
                 userConnections.size(), userId);
-
-        List<User> followers = prepareUsers(userConnections, UserConnection::getFollowerId);
-        log.info("[UserConnectionServiceImpl.getUserFollowers] " +
-                        "Found {} existing followers of user with id: {}",
-                followers.size(), userId);
-        return followers;
+        return userConnections.stream()
+                .map(UserConnection::getFollowerId)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<User> getUserFollowing(Long userId) {
+    public List<Long> getUserFollowing(Long userId) {
         List<UserConnection> userConnections =
-                userConnectionRepository.findAllByFollowerIdOrderByCreated(userId);
+                userConnectionRepository.findAllByFollowerIdOrderByCreatedDesc(userId);
         log.info("[UserConnectionServiceImpl.getUserFollowing] " +
                         "Found {} following users of user with id: {}",
                 userConnections.size(), userId);
 
-        List<User> following = prepareUsers(userConnections, UserConnection::getUserId);
-        log.info("[UserConnectionServiceImpl.getUserFollowers] " +
-                        "Found {} existing following users of user with id: {}",
-                following.size(), userId);
-        return following;
-    }
-
-    private List<User> prepareUsers(List<UserConnection> userConnections,
-                                    Function<UserConnection, Long> getUserId) {
-        List<User> result = new ArrayList<>();
-        for (UserConnection userConnection : userConnections) {
-            Long userId = getUserId.apply(userConnection);
-            User user = userRepository.findById(userId).orElse(null);
-            if (user == null) {
-                log.warn("[UserConnectionServiceImpl.prepareUsers] " +
-                        "User with id {}, not found", userId);
-                continue;
-            }
-            result.add(user);
-        }
-        return result;
+        return userConnections.stream()
+                .map(UserConnection::getUserId)
+                .collect(Collectors.toList());
     }
 
     @Override

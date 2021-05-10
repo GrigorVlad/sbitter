@@ -46,22 +46,4 @@ public class UserRestControllerV1 {
         userDto.setFollowing(userConnectionService.checkFollowing(userId, personId));
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
-
-    @RequestMapping(value = "/{userId}/followers", method = RequestMethod.GET)
-    @ResponseBody
-    public List<UserDto> getUserFollower(@PathVariable Long userId) {
-        List<User> userFollowers = userConnectionService.getUserFollowers(userId);
-        return  userFollowers.stream()
-                .map(UserConverter.TO_USER_DTO)
-                .collect(Collectors.toList());
-    }
-
-    @RequestMapping(value = "/{userId}/followings", method = RequestMethod.GET)
-    @ResponseBody
-    public List<UserDto> getUserFollowing(@PathVariable Long userId) {
-        List<User> userFollowing = userConnectionService.getUserFollowing(userId);
-        return  userFollowing.stream()
-                .map(UserConverter.TO_USER_DTO)
-                .collect(Collectors.toList());
-    }
 }

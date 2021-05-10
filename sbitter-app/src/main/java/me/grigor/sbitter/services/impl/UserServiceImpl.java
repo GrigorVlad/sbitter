@@ -1,6 +1,7 @@
 package me.grigor.sbitter.services.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import me.grigor.sbitter.entity.BaseEntity;
 import me.grigor.sbitter.entity.Role;
 import me.grigor.sbitter.entity.Status;
 import me.grigor.sbitter.entity.User;
@@ -14,8 +15,13 @@ import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -28,6 +34,9 @@ public class UserServiceImpl implements UserService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final Environment environment;
 
+    private Map<Long, User> userIdMap = new HashMap<>();
+    private Map<String, User> usernameMap = new HashMap<>();
+
     @Autowired
     public UserServiceImpl(UserRepository userRepository,
                            RoleRepository roleRepository,
@@ -37,6 +46,16 @@ public class UserServiceImpl implements UserService {
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
         this.environment = environment;
+    }
+
+    @PostConstruct
+    private void postConstructMethod() {
+        this.userIdMap = this.getAll().stream()
+                .collect(Collectors.toMap(BaseEntity::getId, Function.identity()));
+        this.usernameMap = this.getAll().stream()
+                .collect(Collectors.toMap(User::getUsername, Function.identity()));
+        log.info("[UserServiceImpl.postConstructMethod]: Construct map with {} by userId", this.userIdMap.size());
+        log.info("[UserServiceImpl.postConstructMethod]: Construct map with {} by username", this.usernameMap.size());
     }
 
     @Override
@@ -64,6 +83,8 @@ public class UserServiceImpl implements UserService {
         User registeredUser = userRepository.save(user);
 
         log.info("[UserServiceImpl.register] User: {} successfully created", registeredUser);
+        this.userIdMap.put(registeredUser.getId(), registeredUser);
+        this.usernameMap.put(registeredUser.getUsername(), registeredUser);
         return new ServiceResponse<>(registeredUser, resultMessages);
     }
 
@@ -76,14 +97,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByUsername(String username) {
-        User result = userRepository.findByUsername(username);
+        User result = usernameMap.get(username);
+        if (result == null) {
+            log.warn("[UserServiceImpl.findByUsername] No user was found by username: {}", username);
+            return null;
+        }
         log.info("[UserServiceImpl.findByUsername] User: {} found by username: {}", result, username);
         return result;
     }
 
     @Override
     public User findById(Long userId) {
-        User result = userRepository.findById(userId).orElse(null);
+        User result = userIdMap.get(userId);
         if (result == null) {
             log.warn("[UserServiceImpl.findById] No user was found by id: {}", userId);
             return null;

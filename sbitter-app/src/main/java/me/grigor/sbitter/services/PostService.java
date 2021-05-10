@@ -2,6 +2,7 @@ package me.grigor.sbitter.services;
 
 import me.grigor.sbitter.entity.Post;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface PostService {
@@ -10,7 +11,7 @@ public interface PostService {
 
     List<Post> getAllAuthorPosts(Long authorId);
 
-    List<Post> getAllUsersPosts(List<Long> usersIds);
+    List<Post> getAllUsersPosts(Collection<Long> usersIds);
 
     Post addNewPost(Post newPost);
 

@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types"
 import {Form, Button} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-function PostWriter() {
+function PostWriter({onPublishPost}) {
 
     const [postEntity, setPostEntity] = React.useState(null);
 
@@ -24,7 +25,7 @@ function PostWriter() {
                         variant="success"
                         className="publish-btn"
                         size="sm"
-                        onClick={() => {console.debug("New post entity:", postEntity)}}
+                        onClick={() => {onPublishPost(postEntity)}}
                 >
                     <span>
                         <FontAwesomeIcon icon={"upload"}/>
@@ -34,6 +35,10 @@ function PostWriter() {
             </div>
         </div>
     )
+}
+
+PostWriter.propTypes = {
+    onPublishPost: PropTypes.func.isRequired,
 }
 
 export default PostWriter

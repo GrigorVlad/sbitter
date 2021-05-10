@@ -11,4 +11,8 @@ export default class URLHelper {
     static getUsersUrl() {
         return this.getServerURLV1() + "users/";
     }
+
+    static getPostsUrl() {
+        return this.getServerURLV1() + "posts/";
+    }
 }

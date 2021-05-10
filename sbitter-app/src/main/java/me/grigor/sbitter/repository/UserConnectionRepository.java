@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface UserConnectionRepository extends JpaRepository<UserConnection, Long> {
 
-    List<UserConnection> findAllByUserIdOrderByCreated(Long userId);
+    List<UserConnection> findAllByUserIdOrderByCreatedDesc(Long userId);
 
-    List<UserConnection> findAllByFollowerIdOrderByCreated(Long followerId);
+    List<UserConnection> findAllByFollowerIdOrderByCreatedDesc(Long followerId);
 
     Boolean existsByUserIdAndFollowerId(Long userId, Long followerId);
 

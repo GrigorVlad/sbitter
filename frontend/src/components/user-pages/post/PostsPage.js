@@ -1,9 +1,10 @@
 import React from "react";
 import NavVerticalTab from "../../nav-tab/NavVerticalTab";
-import PostContent from "./PostContent";
+import PostsContent from "./PostsContent";
+import {UserContext} from "../../../MainPage";
 
 function PostsPage() {
-
+    const {userAuth} = React.useContext(UserContext);
 
     return (
         <div className="page-entity">
@@ -13,8 +14,9 @@ function PostsPage() {
 
             <div className="left-entry-column">
                 <div className="entity-page-entity">
-                    <PostContent
-                        userIds={[]}
+                    <PostsContent
+                        postsType="followings"
+                        userId={userAuth.id}
                         disableWrite={false}
                     />
                 </div>
