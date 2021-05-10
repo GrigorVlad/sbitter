@@ -1,7 +1,7 @@
 import React from "react";
 import NavVerticalTab from "../../nav-tab/NavVerticalTab";
 
-function FollowersPage() {
+function PeoplePage() {
 
 
     return (
@@ -12,11 +12,11 @@ function FollowersPage() {
 
             <div className="left-entry-column">
                 <div className="entity-page-entity">
-                    <p>Here will be FollowersPage</p>
+                    <p>Here will be PeoplePage</p>
                 </div>
             </div>
         </div>
     )
 }
 
-export default FollowersPage
+export default PeoplePage;

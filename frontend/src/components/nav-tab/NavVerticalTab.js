@@ -11,15 +11,9 @@ function NavVerticalTab() {
             />
 
             <NavEntity
-                navLink={"/followers"}
+                navLink={"/people"}
                 navIcon={"users"}
-                navText={"Followers"}
-            />
-
-            <NavEntity
-                navLink={"/followings"}
-                navIcon={"user-friends"}
-                navText={"Followings"}
+                navText={"People"}
             />
 
             <NavEntity

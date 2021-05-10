@@ -46,7 +46,7 @@ function Login() {
                 onUserAuthChange(res.data);
             },
             (err) => {
-                if (err.response.status === 403) {
+                if (err && err.response && err.response.status === 403) {
                     setError({
                         username: "User with this username is not exist"
                     })
