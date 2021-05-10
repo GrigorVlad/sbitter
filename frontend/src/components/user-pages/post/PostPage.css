@@ -1,0 +1,28 @@
+div.post-content {
+    height: calc(100% - 214px); /**/
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+div.post-writer-form {
+    border-bottom: 1px solid #ced4da;
+}
+
+div.publish-buttons {
+    margin: 5px 0 5px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+button.publish-btn {
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    color: #6c757d;
+    text-decoration: underline;
+}
+
+button.publish-btn:hover {
+    background-color: lightgreen;
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import NavVerticalTab from "../../nav-tab/NavVerticalTab";
+import PostContent from "./PostContent";
 
 function PostsPage() {
 
@@ -12,7 +13,10 @@ function PostsPage() {
 
             <div className="left-entry-column">
                 <div className="entity-page-entity">
-                    <p>Here will be PostsPage</p>
+                    <PostContent
+                        userIds={[]}
+                        disableWrite={false}
+                    />
                 </div>
             </div>
         </div>

@@ -1,11 +1,23 @@
 import React from "react";
+import PostWriter from "./PostWriter";
+import PostsPanel from "./PostsPanel";
 
-function PostContent({userIds}) {
+import "./PostPage.css"
 
+    function PostContent({userIds, disableWrite}) {
 
     return (
-        <div>
-            Here will be posts
+        <div className="post-content">
+            {
+                !disableWrite &&
+                <div className="post-writer-panel">
+                    <PostWriter/>
+                </div>
+            }
+            <div className="all posts">
+                <PostsPanel
+                />
+            </div>
         </div>
     )
 }

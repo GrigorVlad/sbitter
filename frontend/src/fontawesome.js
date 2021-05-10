@@ -5,6 +5,7 @@ import {
     faUserFriends,
     faNewspaper,
     faSignOutAlt,
+    faUpload,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -13,4 +14,5 @@ library.add(
     faUserFriends,
     faNewspaper,
     faSignOutAlt,
+    faUpload,
 );

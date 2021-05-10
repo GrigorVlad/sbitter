@@ -38,11 +38,11 @@ function UserInfoPage(props) {
                         <div className="user-info-content">
                             <div className="info-buttons">
                                 {
-                                    userPageId !== userAuth.id &&
+                                    (userOnPage && userOnPage.following === false) &&
                                     <Button id="follow-btn-id"
-                                        variant="secondary"
-                                        className="user-info-btn follow-btn"
-                                        size="sm"
+                                            variant="secondary"
+                                            className="user-info-btn follow-btn"
+                                            size="sm"
                                     >
                                         Follow
                                     </Button>
@@ -51,10 +51,10 @@ function UserInfoPage(props) {
                                 {
                                     userPageId === userAuth.id &&
                                     <Button id="edit-btn-id"
-                                        variant="secondary"
-                                        className="user-info-btn edit-btn"
-                                        size="sm"
-                                        disabled={true}
+                                            variant="secondary"
+                                            className="user-info-btn edit-btn"
+                                            size="sm"
+                                            disabled={true}
                                     >
                                         Edit
                                     </Button>
@@ -67,11 +67,10 @@ function UserInfoPage(props) {
                             />
                         </div>
 
-                        <div>
-                            <PostContent
-                                userIds={[userPageId]}
-                            />
-                        </div>
+                        <PostContent
+                            userIds={[userPageId]}
+                            disableWrite={userPageId !== userAuth.id}
+                        />
                     </div>
                 </div>
             </div>
