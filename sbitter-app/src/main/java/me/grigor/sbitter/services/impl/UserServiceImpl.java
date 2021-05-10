@@ -120,6 +120,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteById(Long userId) {
         userRepository.deleteById(userId);
+        User user = userIdMap.get(userId);
+        userIdMap.remove(userId);
+        usernameMap.remove(user.getUsername());
         log.info("[UserServiceImpl.deleteById] User with id: {} was successfully deleted", userId);
     }
 }
