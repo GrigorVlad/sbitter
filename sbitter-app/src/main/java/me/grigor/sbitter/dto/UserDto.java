@@ -20,6 +20,8 @@ public class UserDto {
     private String email;
     private List<String> roles;
     private Date created;
-    private Date updated;
+    private Boolean follower;
+    private Boolean following;
+
 
 }

@@ -39,7 +39,6 @@ public class UserConverter {
         dto.setLastName(user.getLastName());
         dto.setEmail(user.getEmail());
         dto.setCreated(user.getCreated());
-        dto.setUpdated(user.getUpdated());
         dto.setRoles(
                 LIST_ROLES_CONVERTER.apply(user.getRoles())
         );
@@ -57,7 +56,6 @@ public class UserConverter {
         user.setLastName(dto.getLastName());
         user.setEmail(dto.getEmail());
         user.setCreated(dto.getCreated());
-        user.setUpdated(dto.getUpdated());
         return user;
     };
 }

@@ -5,10 +5,10 @@ export default class URLHelper {
     }
 
     static getAuthURL() {
-        return this.getServerURLV1() + "auth";
+        return this.getServerURLV1() + "auth/";
     }
 
     static getUsersUrl() {
-        return this.getServerURLV1() + "users";
+        return this.getServerURLV1() + "users/";
     }
 }

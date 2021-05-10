@@ -11,4 +11,6 @@ public interface UserConnectionRepository extends JpaRepository<UserConnection, 
 
     List<UserConnection> findAllByFollowerIdOrderByCreated(Long followerId);
 
+    Boolean existsByUserIdAndFollowerId(Long userId, Long followerId);
+
 }

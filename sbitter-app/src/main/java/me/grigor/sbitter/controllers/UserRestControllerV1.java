@@ -29,18 +29,22 @@ public class UserRestControllerV1 {
         this.userConnectionService = userConnectionService;
     }
 
-    @RequestMapping(value = "/{userId}/info", method = RequestMethod.GET)
+    @RequestMapping(value = "/{userId}/info/{personId}", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<UserDto> getUserById(@PathVariable Long userId) {
-        User userById = userService.findById(userId);
-        if (userById == null) {
+    public ResponseEntity<UserDto> getUserById(@PathVariable Long userId, @PathVariable Long personId) {
+        User person = userService.findById(personId);
+        if (person == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-        return new ResponseEntity<>(
-                UserConverter.TO_USER_DTO.apply(userById),
-                HttpStatus.OK
-        );
+        UserDto userDto = UserConverter.TO_USER_DTO.apply(person);
+        if (userId.equals(personId)) {
+            return new ResponseEntity<>(userDto, HttpStatus.OK);
+        }
+
+        userDto.setFollower(userConnectionService.checkFollower(userId, personId));
+        userDto.setFollowing(userConnectionService.checkFollowing(userId, personId));
+        return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{userId}/followers", method = RequestMethod.GET)

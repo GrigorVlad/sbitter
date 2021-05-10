@@ -81,4 +81,20 @@ public class UserConnectionServiceImpl implements UserConnectionService {
                 "Connection {} successfully created", newUserConnection);
         return newUserConnection;
     }
+
+    @Override
+    public boolean checkFollower(Long userId, Long personId) {
+        Boolean checkFollowers = userConnectionRepository.existsByUserIdAndFollowerId(userId, personId);
+        log.info("[UserConnectionServiceImpl.checkFollower] " +
+                "Person {} follower by user {} is {}", personId, userId, checkFollowers);
+        return checkFollowers;
+    }
+
+    @Override
+    public boolean checkFollowing(Long userId, Long personId) {
+        Boolean checkFollowing = userConnectionRepository.existsByUserIdAndFollowerId(personId, userId);
+        log.info("[UserConnectionServiceImpl.checkFollower] " +
+                "User {} follower by person {} is {}", userId, personId, checkFollowing);
+        return checkFollowing;
+    }
 }

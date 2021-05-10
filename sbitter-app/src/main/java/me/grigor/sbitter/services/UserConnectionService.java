@@ -13,4 +13,8 @@ public interface UserConnectionService {
 
     UserConnection addConnection(UserConnection userConnection);
 
+    boolean checkFollower(Long userId, Long personId);
+
+    boolean checkFollowing(Long userId, Long personId);
+
 }
